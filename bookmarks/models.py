@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models.fields import CharField
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Bookmark(models.Model):
@@ -8,6 +9,9 @@ class Bookmark(models.Model):
 
     url = models.URLField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    private = models.BooleanField(default=False)
 
     class Meta:
         ordering = ('title',)
